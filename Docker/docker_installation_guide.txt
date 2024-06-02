@@ -1,0 +1,32 @@
+******************************************************************************************************************************************
+1.Follow the digitalOcean guide to download the pacakages.
+
+  https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04
+
+2.if you want docker command to work without giving sudo,
+
+  sudo usermod -aG docker ${USER}
+
+3.MAke sure windows virtualization software is enabled in windows.
+  
+ Control panel -> programs & features -> trun windows on or off
+
+4.Make sure BIOS virtualisation is enabled(restart PC, press F2)
+
+5.After installing, if you are using ubuntu 22.04 wsl2 if docker is still not running, update iptables
+  
+  sudo update-alternatives --config iptables(press '1' and enter)
+
+6.After this "sudo service docker status" , you will see docker running.
+
+  Commands to check status ,start,stop,
+
+  sudo service docker status
+  sudo service docker start
+  sudo service docker restart
+
+******************************************************************************************************************************************
+   
+Linux Command to check tools installed and their sizes :
+
+   dpkg-query -W --showformat='${Installed-Size}\t${Package}\n' | awk '{printf "%.2f MB\t%s\n", $1/1024, $2}' | sort -n

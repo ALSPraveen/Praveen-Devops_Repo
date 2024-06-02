@@ -1,0 +1,35 @@
+Angular project build process :
+
+# First we need to install angular cli which will be useful in running ng command.
+
+  npm install -g @angular/cli
+  
+# Also install node dependencies using npm
+  
+  npm install
+  
+# Now create a new angular project using ng command.
+
+  ng new angular-project
+  
+# if you get an error saying that , you need to use higher version of node ,
+
+ you can check node version using , node -v
+ you can check npm version using , npm -v
+ 
+# Go to https://nvm.sh
+
+  install nvm (version manager of node.js) 
+  
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  
+# now to install 18 version of node 
+
+  nvm install 18 ---it will download node 18 version
+  
+  nvm user 18 ----it will use 18 verison of node
+  
+  nvm ls-remote(lists available versions)
+  
+# after this create a dockerfile and run it , bind port 80 to your local port .
+ 

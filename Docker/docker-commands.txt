@@ -1,0 +1,87 @@
+Docker Commands :
+
+docker version                           # To know the version fo docker installed
+
+docker info                              # Detailed info of images/containers used 
+
+service docker stop                      # Stop docker daemon
+
+service docker start                     # Start docker daemon
+
+docker ps                                # All running containers
+
+docker ps -a                             # All stopped and running containers
+
+docker images                            # shows all the docker images in your local
+
+docker history nginximage                # Histoy of commands run on that image
+
+docker search nginx | head               # Search for image in dockerhub through docker command 
+
+docker pull nginx                        # Checks your local for the image ,if not found,it will go to dockerhub and gets it
+
+docker rmi nginx                         # To remove the docker image
+                                           ( In case some container is using it , first kill the container)
+										   
+docker rm nginx-container                # To remove container
+                                           ( In case the container is running , stop the cotainer)
+										   
+										   
+docker stats <container name>/<container id>
+                                         # Gives memory, cpu e.tc usage stats
+
+docker pause <container id>              # Pauses the service(The url will continue to reload (hangs) and no changes will be reflected)
+	
+docker unpause <container id>            # Unpauses the service and url reloads quickly 
+	
+										   
+docker run -d --name nginxcontainer -p 8080:80 nginximage
+
+                                         # Command to run the container (-p is for port binding. Nginx web server runs on port 80 on default port 
+										   We need to expose it to outside of container to access the service)
+										   
+################################################################################################################################################################
+When you try to expose to a port which is already allocated we get below error.
+
+docker: Error response from daemon: driver failed programming external connectivity on endpoint nginxcontainer1 (e516215b2e8cd7f1c58dd5a64fec2c2bdffc5c15cc51b1682dd8dbad6b89b746): Bind for 0.0.0.0:8080 failed: port is already allocated.
+
+################################################################################################################################################################
+
+netstas -tuln | grep 8080                # Command to check if the port is open and listening 
+
+docker kill nginxscontainer              # Kill running container
+
+docker start nginxscontainer             # Start the same container: 
+                                         
+docker stop nginxscontainer              # Stop the running container
+
+docker container prune                   # Removes all stopped containers 
+
+################################################################################################################################################################
+
+--we can export the entire container file system to a tar file 
+
+docker run -d --name nginxcontainer -p 8080:80 nginximage
+
+docker export nginxcontainer > test.tar
+
+tar -xvf test.tar
+
+--Once you peroform above operations you can see all the directories of a container
+
+################################################################################################################################################################
+
+docker logs <container id>               # Shows logs
+
+docker exec -ti <container id> bash      # Interactive terminal of conatiner id
+                                           (only works if container is in running mode)
+
+										   
+################################################################################################################################################################
+
+Ways to run ubuntu image, it(interactive psuedo terminal)
+										   
+docker run -d -ti ubuntu                 # Run an interactive session with ubuntu container 
+
+docker attach <container id from above command> # Attach the container to get into ubuntu terminal 
+										   
